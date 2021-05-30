@@ -121,6 +121,11 @@ class OC_User_Kreuzmich extends \OCA\kreuzmichlogin\Base{
 				}
 			}
 			
+			if (!empty($this->groups_all))
+			{
+				$groups[] = $this->groups_all;
+			}
+			
 			// Verarbeitung Userdaten
 			if (!$this->userExists($uid)) 
 			{

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>kreuzmichlogin</id>
+    <name>Kreuzmich Login</name>
+    <summary>Login mit Kreuzmich</summary>
+    <description><![CDATA[Login mit Kreuzmich Logindaten]]></description>
+    <version>0.0.5</version>
+    <licence>agpl</licence>
+    <author mail="ramen100@hhu.de" homepage="http://www.fsmed.de">Raphael Menke</author>
+    <types>
+		<prelogin/>
+		<authentication/>
+	</types>
+	<namespace>kreuzmichlogin</namespace>
+	<category>tools</category>
+	<category>integration</category>
+    <bugs>http://fsmed.de/kontakt</bugs>
+    <dependencies>
+        <nextcloud min-version="15" max-version="15"/>
+    </dependencies>
+    <settings>
+        <admin>\OCA\kreuzmichlogin\AdminSettings</admin>
+		<admin-section>\OCA\kreuzmichlogin\AdminSection</admin-section>
+	</settings>
+</info>

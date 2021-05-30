@@ -1,0 +1,15 @@
+{
+    "name": "Kreuzmich Login",
+    "description": "Login mit Kreuzmich",
+    "type": "project",
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Raphael Menke"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.4"
+    }
+}

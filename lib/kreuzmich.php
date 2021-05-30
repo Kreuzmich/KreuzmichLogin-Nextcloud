@@ -112,34 +112,15 @@ class OC_User_Kreuzmich extends \OCA\kreuzmichlogin\Base{
 			// Hole Gruppen aus der zweiten Funktion und füge den Benutzer hinzu
 			// Auch wenn der Benutzer schon in der Cloud existiert
 			// Gruppe wird erstellt, falls es sie noch nicht gibt
-			$data_forum = $this->getUserGroups ($uid);
-			if (is_array($data_forum)) 
+			$data_groups = $this->getUserGroups ($uid);
+			if (is_array($data_groups)) 
 			{
-				foreach ($data_forum as $key => $value) 
+				foreach ($data_groups as $key => $value) 
 				{
-					$groups[] = $value['name'];
+					$groups[] = $value;
 				}
 			}
 			
-			// Es gibt Gruppen und _not_cloud ist eine? Kein Login
-			if  ((sizeof($groups) > 0) && (in_array('_not_cloud', $groups, true)) ) 
-			{
-				OC::$server->getLogger()->error(
-					'Konto für Cloud gesperrt: ' . $uid,
-					['app' => 'kreuzmichLogin']
-				);
-				return false;
-			}
-			
-			// es gibt keine Gruppen oder man ist nicht gesperrt für Studi Ordner? Dann füge zur Gruppe hinzu, in der alle sind.
-			if ( (!empty($this->groups_all)) && (!in_array('_not_studierendenordner Cloud', $groups, true)) ) 
-			{
-				$groups[] = $this->groups_all;
-			}
-			
-			//lösche alle _not_ Gruppen, damit diese nicht in der Cloud auftauchen
-			$groups = preg_grep('/^[a-zA-Z0-9\W*]/', $groups);
-		
 			// Verarbeitung Userdaten
 			if (!$this->userExists($uid)) 
 			{

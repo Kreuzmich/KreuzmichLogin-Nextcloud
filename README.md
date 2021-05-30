@@ -1,8 +1,17 @@
 # Kreuzmich Login
-Place this app in **nextcloud/apps/**
+* Provides a cURL-based external authentification method against Kreuzmich Server
+* based on https://github.com/nextcloud/user_external 
+* Kreuzmich users are stored in an external users table
+* Existing users who validate against the Nextcloud database kann still login with their old password, only recommended for admins 
+* You can specify in settings if expired users or users that have not authenticate before should be allowed, as well es a default Nextcloud group for all users.
+* PHP programmers can specify an additional function where another source or function can be specified to set groups for individual users. 
+
+## Install and activate
+* Place this app in **nextcloud/apps/**
+* Activate this app via Nextcloud app list in GUI
+* Navigate to Settings and Kreuzmich Login to specify your Kreuzmich city / subdomain
 
 ## Building the app
-
 The app can be built by using the provided Makefile by running:
 
     make
@@ -34,19 +43,3 @@ First get an account for the [App Store](http://apps.nextcloud.com/) then run:
 
 The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
 
-## Running tests
-You can use the provided Makefile to run all tests by using:
-
-    make test
-
-This will run the PHP unit and integration tests and if a package.json is present in the **js/** folder will execute **npm run test**
-
-Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html) and use the configurations directly:
-
-    phpunit -c phpunit.xml
-
-or:
-
-    phpunit -c phpunit.integration.xml
-
-for integration tests

@@ -109,7 +109,7 @@ class OC_User_Kreuzmich extends \OCA\kreuzmichlogin\Base{
 			// NEU: $uid wird von case-insensitivem Benutzernamen aus Kreuzmich überschrieben
 			$uid = $ext_auth['user']['username'];
 			
-			// Hole Gruppen aus dem Forum und füge den Benutzer hinzu
+			// Hole Gruppen aus der zweiten Funktion und füge den Benutzer hinzu
 			// Auch wenn der Benutzer schon in der Cloud existiert
 			// Gruppe wird erstellt, falls es sie noch nicht gibt
 			$data_forum = $this->getUserGroups ($uid);
@@ -189,22 +189,13 @@ class OC_User_Kreuzmich extends \OCA\kreuzmichlogin\Base{
 	/*
 	* Diese Funktion kann verwendet werden, um zusätzlich zu den Kreuzmich-Daten Gruppen von anderen Quellen zu erhalten
 	*
-	* Es wird ein Array mit Gruppennamen zurückgegeben
+	* Es wird ein eindimensionales Array mit Gruppennamen als Strings zurückgegeben
 	*
 	* @return Array 
 	*/
 	private function getUserGroups( $username ) 
 	{
-		// Verbinde mit Forum/Benutzerverwaltung
-		$ch_forum = curl_init("https://board.fsmed.de/benutzer.php");
-		curl_setopt($ch_forum, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch_forum, CURLOPT_POSTFIELDS, http_build_query(array('forum_gruppen_von' => $username, 'ajax' => 'true', 'request' => 'true' ))); 
-		curl_setopt($ch_forum, CURLOPT_RETURNTRANSFER, true);
-		$result_forum = curl_exec($ch_forum);
-		$forum_auth = @json_decode($result_forum, true);
-		curl_close($ch_forum);
 		
-		return $forum_auth['detail'];
 	}
 	
 	/*
@@ -227,8 +218,5 @@ class OC_User_Kreuzmich extends \OCA\kreuzmichlogin\Base{
 		curl_close($ch);
 		
 		return $ext_auth; 
-	
-	}		
-
-
+	}
 }
